@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import database.MySQL;
+import entities.Shoe;
 import entities.User;
 
 public class UserService {
@@ -49,4 +50,26 @@ public class UserService {
             return "fail";
         }
     }
+
+    public User getUserByEmail(String email) {
+        String query = "SELECT * FROM users WHERE email = ?";
+        try (Connection conn = db.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, email);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    User user = new User(
+                            rs.getInt("id"),
+                            rs.getString("name"),
+                            rs.getString("password"),
+                            rs.getString("email"),
+                            rs.getBoolean("isAdmin"));
+                    return user;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error getting user: " + e.getMessage());
+        }
+        return null;
+    }
+
 }
