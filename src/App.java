@@ -21,9 +21,10 @@ public class App {
 
         while (in) {
             System.out.println();
-            System.out.println("Press 1 to signup");
-            System.out.println("Press 2 to login");
-            System.out.println("Press 3 to exit");
+            System.out.println("Select an action:");
+            System.out.println("1. Create a user account");
+            System.out.println("2. Login");
+            System.out.println("3. Exit");
 
             System.out.print("Option: ");
             int select = input.nextInt();
@@ -52,15 +53,17 @@ public class App {
                 UserCommandInvoker invoker = new UserCommandInvoker();
                 invoker.setCommand(loginCommand);
                 invoker.executeCommand();
-                if (loginCommand.isLoginSuccessful()) {
+                if (loginCommand.isLoginSuccessful() == "user") {
                     System.out.println();
                     System.out.println("Welcome to CodeKicks!");
                     boolean loggedIn = true;
                     while (loggedIn) {
                         System.out.println();
-                        System.out.println("Press 1 to view products");
-                        System.out.println("Press 2 to view cart");
-                        System.out.println("Press 3 to logout");
+                        System.out.println("Select an action:");
+                        System.out.println("1. View Products");
+                        System.out.println("2. Add Product to Cart");
+                        System.out.println("3. View Cart");
+                        System.out.println("4. Logout");
                         System.out.print("Option: ");
                         int userSelect = input.nextInt();
 
@@ -72,6 +75,42 @@ public class App {
                             case 2:
                                 // Code to view cart
                                 System.out.println("Displaying cart...");
+                                break;
+                            case 3:
+                                // Code to view cart
+                                System.out.println("Adding to cart...");
+                                break;
+                            case 4:
+                                // Logout
+                                System.out.println("Logging out...");
+                                loggedIn = false;
+                                break;
+                            default:
+                                System.out.println("Invalid input! Please try again.");
+                        }
+                    }
+                } else if (loginCommand.isLoginSuccessful() == "admin") {
+                    System.out.println();
+                    System.out.println("Welcome to Admin Dashboard!");
+                    boolean loggedIn = true;
+                    while (loggedIn) {
+                        System.out.println();
+                        System.out.println("Select an action:");
+                        System.out.println("1. View Products");
+                        System.out.println("2. Add Product");
+                        System.out.println("3. Edit Product");
+                        System.out.println("4. Logout");
+                        System.out.print("Option: ");
+                        int userSelect = input.nextInt();
+
+                        switch (userSelect) {
+                            case 1:
+                                // Code to view products
+                                System.out.println("Displaying products...");
+                                break;
+                            case 2:
+                                // Code to add products
+                                System.out.println("Adding...");
                                 break;
                             case 3:
                                 // Logout

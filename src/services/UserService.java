@@ -29,16 +29,24 @@ public class UserService {
         }
     }
 
-    public boolean login(User user) {
+    public String login(User user) {
         String query = "SELECT * FROM users WHERE email = ? AND password = ?";
         try (Connection conn = db.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setString(1, user.getEmail());
             stmt.setString(2, user.getPassword());
             ResultSet rs = stmt.executeQuery();
-            return rs.next();
+            if (rs.next()) {
+                if (rs.getBoolean("isAdmin")) {
+                    return "admin";
+                } else {
+                    return "user";
+                }
+            } else {
+                return "fail";
+            }
         } catch (SQLException e) {
             System.out.println("Error logging in: " + e.getMessage());
-            return false;
+            return "fail";
         }
     }
 }

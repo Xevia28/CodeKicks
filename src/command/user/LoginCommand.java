@@ -7,7 +7,7 @@ import services.UserService;
 public class LoginCommand implements Command {
     private UserService userService;
     private User user;
-    private boolean loginSuccessful;
+    private String loginSuccessful;
 
     public LoginCommand(UserService userService, User user) {
         this.userService = userService;
@@ -17,14 +17,14 @@ public class LoginCommand implements Command {
     @Override
     public void execute() {
         loginSuccessful = userService.login(user);
-        if (loginSuccessful) {
+        if (loginSuccessful != "fail") {
             System.out.println("Login successful.");
         } else {
             System.out.println("Login failed.");
         }
     }
 
-    public boolean isLoginSuccessful() {
+    public String isLoginSuccessful() {
         return loginSuccessful;
     }
 }
