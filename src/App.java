@@ -10,6 +10,7 @@ import command.user.SignUpCommand;
 import command.user.UserCommandInvoker;
 import entities.User;
 import services.UserService;
+// import services.NotificationService;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -129,6 +130,21 @@ public class App {
                 System.out.println("Invalid input! Please try again.");
             }
         }
+        // NotificationService notificationService = new NotificationService();
+        // // UserService userService = new UserService(notificationService);
+
+        // User user1 = new User("Alice", "alice@example.com");
+        // User user2 = new User("Bob", "bob@example.com");
+
+        // userService.signUp(user1);
+        // userService.signUp(user2);
+
+        // notificationService.orderStatusUpdate("Shipped");
+        // notificationService.newPromotion("20% off all items!");
+
+        // userService.login(user1);
+
+        // notificationService.productAvailabilityChange("Laptop", true);
         input.close();
     }
 }
