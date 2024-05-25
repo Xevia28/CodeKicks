@@ -37,6 +37,13 @@ public class MySQL {
 
     // Method to get the connection
     public Connection getConnection() {
+        try {
+            if (conn == null || conn.isClosed()) {
+                conn = DriverManager.getConnection(URL, USER, PASS);
+            }
+        } catch (SQLException e) {
+            System.out.println("Failed to reconnect to database: " + e.getMessage());
+        }
         return conn;
     }
 
