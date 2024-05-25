@@ -1,42 +1,31 @@
 package command.cart;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
 import command.Command;
-import database.MySQL;
 import entities.Cart;
-import entities.Shoe;
+import services.CartService;
 
 public class AddToCartCommand implements Command {
+    private CartService cartService;
     private Cart cart;
-    private Shoe shoe;
+    private int shoeId;
 
-    public AddToCartCommand(Cart cart, Shoe shoe) {
+    public AddToCartCommand(CartService cartService, Cart cart, int shoeId) {
+        this.cartService = cartService;
         this.cart = cart;
-        this.shoe = shoe;
+        this.shoeId = shoeId;
     }
 
     @Override
     public void execute() {
-        cart.addProduct(shoe);
-        saveCartActionToDatabase("add", shoe.getId());
-        System.out.println("Shoe added to cart.");
-    }
-
-    private void saveCartActionToDatabase(String action, int productId) {
-        MySQL db = MySQL.getInstance();
-        Connection conn = db.getConnection();
-        String query = "INSERT INTO cart_actions (action, product_id) VALUES (?, ?)";
-
-        try (PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setString(1, action);
-            stmt.setInt(2, productId);
-            stmt.executeUpdate();
-            System.out.println("Cart action saved to database.");
-        } catch (SQLException e) {
-            System.out.println("Error saving cart action: " + e.getMessage());
+        int cartId = cart.getId();
+        if (cartId == 0) {
+            cartId = cartService.createCart(cart.getUserId());
+            cart.setId(cartId);
+        }
+        if (cartService.addToCart(cartId, shoeId)) {
+            System.out.println("Shoe added to cart.");
+        } else {
+            System.out.println("Failed to add shoe to cart.");
         }
     }
 }

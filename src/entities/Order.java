@@ -5,9 +5,14 @@ import state.ProcessingState;
 
 public class Order {
     private int id;
+    private int userid;
+    private int cartid;
     private OrderState state;
 
-    public Order() {
+    public Order(int id, int userid, int cartid) {
+        this.id = id;
+        this.userid = userid;
+        this.cartid = cartid;
         state = new ProcessingState();
     }
 
@@ -33,5 +38,13 @@ public class Order {
 
     public int getId() {
         return id;
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public int getCartid() {
+        return cartid;
     }
 }
