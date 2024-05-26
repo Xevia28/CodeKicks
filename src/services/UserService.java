@@ -4,17 +4,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import strategy.PaymentProcessor;
+import strategy.PaymentStrategy;
 import database.MySQL;
 import entities.Shoe;
 import entities.User;
 
 public class UserService {
     private MySQL db;
+    private PaymentProcessor paymentProcessor;
 
-    public UserService() {
+    public UserService(PaymentProcessor paymentProcessor) {
         db = MySQL.getInstance();
-    }
+        this.paymentProcessor = paymentProcessor;    }
 
     public boolean signUp(User user) {
         String query = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
@@ -71,5 +73,11 @@ public class UserService {
         }
         return null;
     }
+    public void selectPaymentStrategy(PaymentStrategy strategy) {
+        paymentProcessor.setPaymentStrategy(strategy);
+    }
 
+    public void processPayment(double amount) {
+        paymentProcessor.executePayment(amount);
+    }
 }
