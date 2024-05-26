@@ -2,6 +2,6 @@ package factory;
 
 import entities.Shoe;
 
-public abstract class ShoeFactory {
-    public abstract Shoe createShoe();
+public interface ShoeFactory {
+    Shoe createShoe(String type, String style, String size, double price);
 }

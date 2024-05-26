@@ -78,11 +78,23 @@ public class CartService {
     }
 
     public boolean removeFromCart(int cartId, int shoeId) {
-        String query = "DELETE FROM cart_items WHERE cart_id = ? AND shoe_id = ?";
-        try (Connection conn = db.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, cartId);
-            stmt.setInt(2, shoeId);
-            stmt.executeUpdate();
+        String checkQuery = "SELECT 1 FROM cart_items WHERE cart_id = ? AND shoe_id = ?";
+        String deleteQuery = "DELETE FROM cart_items WHERE cart_id = ? AND shoe_id = ?";
+
+        try (Connection conn = db.getConnection();
+                PreparedStatement checkStmt = conn.prepareStatement(checkQuery);
+                PreparedStatement deleteStmt = conn.prepareStatement(deleteQuery)) {
+            checkStmt.setInt(1, cartId);
+            checkStmt.setInt(2, shoeId);
+            try (ResultSet rs = checkStmt.executeQuery()) {
+                if (!rs.next()) {
+                    System.out.println("Shoe with id " + shoeId + " does not exist in the cart!");
+                    return false;
+                }
+            }
+            deleteStmt.setInt(1, cartId);
+            deleteStmt.setInt(2, shoeId);
+            deleteStmt.executeUpdate();
             return true;
         } catch (SQLException e) {
             System.out.println("Error removing from cart: " + e.getMessage());
@@ -90,15 +102,16 @@ public class CartService {
         }
     }
 
-    public boolean clearCart(int cartId) {
-        String query = "DELETE FROM cart_items WHERE cart_id = ?";
-        try (Connection conn = db.getConnection(); PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, cartId);
-            stmt.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            System.out.println("Error clearing cart: " + e.getMessage());
-            return false;
-        }
-    }
+    // public boolean clearCart(int cartId) {
+    // String query = "DELETE FROM cart_items WHERE cart_id = ?";
+    // try (Connection conn = db.getConnection(); PreparedStatement stmt =
+    // conn.prepareStatement(query)) {
+    // stmt.setInt(1, cartId);
+    // stmt.executeUpdate();
+    // return true;
+    // } catch (SQLException e) {
+    // System.out.println("Error clearing cart: " + e.getMessage());
+    // return false;
+    // }
+    // }
 }

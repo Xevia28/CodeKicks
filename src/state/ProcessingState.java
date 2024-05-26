@@ -17,4 +17,9 @@ public class ProcessingState implements OrderState {
     public void printStatus() {
         System.out.println("Order is being processed.");
     }
+
+    @Override
+    public String getStatus() {
+        return "Processing";
+    }
 }

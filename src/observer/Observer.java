@@ -1,5 +1,9 @@
 package observer;
 
+import entities.Order;
+
 public interface Observer {
-    void update(String message);
+    void notify(Order order);
+
+    void update(Order order);
 }

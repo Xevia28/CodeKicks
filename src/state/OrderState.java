@@ -8,4 +8,6 @@ public interface OrderState {
     void prev(Order order);
 
     void printStatus();
+
+    String getStatus();
 }

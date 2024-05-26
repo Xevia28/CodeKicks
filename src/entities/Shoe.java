@@ -17,6 +17,18 @@ public class Shoe {
         this.price = price;
     }
 
+    public Shoe(String type, String brand, String style, String size, double price) {
+        this.type = type;
+        this.brand = brand;
+        this.style = style;
+        this.size = size;
+        this.price = price;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setType(String type) {
         this.type = type;
     }

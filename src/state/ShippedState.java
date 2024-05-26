@@ -17,4 +17,9 @@ public class ShippedState implements OrderState {
     public void printStatus() {
         System.out.println("Order is shipped.");
     }
+
+    @Override
+    public String getStatus() {
+        return "Shipped";
+    }
 }

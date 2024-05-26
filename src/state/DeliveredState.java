@@ -18,4 +18,8 @@ public class DeliveredState implements OrderState {
         System.out.println("Order is delivered.");
     }
 
+    @Override
+    public String getStatus() {
+        return "Delivered";
+    }
 }
