@@ -7,7 +7,15 @@ public class PaymentProcessor {
         this.strategy = strategy;
     }
 
+    public void setPaymentStrategy(PaymentStrategy strategy) {
+        this.strategy = strategy;
+    }
+
     public void executePayment(double amount) {
-        strategy.pay(amount);
+        if (strategy != null) {
+            strategy.pay(amount);
+        } else {
+            System.out.println("Payment strategy is not initialized.");
+        }
     }
 }

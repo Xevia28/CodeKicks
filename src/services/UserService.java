@@ -4,9 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import strategy.PaymentProcessor;
+import strategy.PaymentStrategy;
 import database.MySQL;
-import entities.Shoe;
 import entities.User;
 
 public class UserService {
@@ -71,5 +71,4 @@ public class UserService {
         }
         return null;
     }
-
 }

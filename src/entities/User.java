@@ -55,6 +55,10 @@ public class User implements Observer {
         return isAdmin;
     }
 
+    // @Override
+    // public void update(String message) {
+    // System.out.println("Notification for " + name + ": " + message);
+    // }
     @Override
     public void notify(Order order) {
         System.out.println("Hello " + name + ", your order has been successfully created with ID: " + order.getId());

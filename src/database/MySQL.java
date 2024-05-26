@@ -10,7 +10,7 @@ public class MySQL {
     private static final String URL = "jdbc:mysql://localhost:3306/codekicks";
     private static final String USER = "root";
     private static final String PASS = "root";
-
+    // Chador@2001wangdi
     // Private constructor to prevent instantiation from outside
     private MySQL() {
         try {
