@@ -31,6 +31,9 @@ import services.CartService;
 import services.OrderService;
 import services.ShoeService;
 import services.UserService;
+import strategy.MBobPaymentStrategy;
+import strategy.MPayPaymentStrategy;
+import strategy.PaymentProcessor;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -39,6 +42,7 @@ public class App {
         ShoeService shoeService = new ShoeService();
         CartService cartService = new CartService();
         OrderService orderService = new OrderService();
+        PaymentProcessor paymentProcessor = new PaymentProcessor();
         boolean in = true;
 
         while (in) {
@@ -122,9 +126,28 @@ public class App {
                                 input.nextLine();
                                 System.out.print("Enter your address: ");
                                 String address = input.nextLine();
+                                System.out.println("Enter payment method:");
+                                System.out.println("1.  MBob");
+                                System.out.println("2.  MPay");
+                                int choice = input.nextInt();
+                                switch (choice) {
+                                    case 1:
+                                        System.out.print("Enter mbob account number: ");
+                                        String mbobAcc = input.next();
+                                        paymentProcessor.setPaymentStrategy(new MBobPaymentStrategy(mbobAcc));
+                                        break;
+                                    case 2:
+                                        System.out.print("Enter mpay account number: ");
+                                        String mpayAcc = input.next();
+                                        paymentProcessor.setPaymentStrategy(new MPayPaymentStrategy(mpayAcc));
+                                        break;
 
+                                    default:
+                                        System.out.println("Invalid input. Please try again!");
+                                        break;
+                                }
                                 Command checkoutCommand = new CheckoutCommand(userCart, address, orderService,
-                                        cartService);
+                                        cartService, paymentProcessor);
                                 invoker.setCommand(checkoutCommand);
                                 invoker.executeCommand();
                                 userCart = new Cart(currUser.getId());

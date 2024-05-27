@@ -10,8 +10,7 @@ public class MySQL {
     private static final String URL = "jdbc:mysql://localhost:3306/codekicks";
     private static final String USER = "root";
     private static final String PASS = "root";
-    // Chador@2001wangdi
-    // Private constructor to prevent instantiation from outside
+
     private MySQL() {
         try {
             conn = DriverManager.getConnection(URL, USER, PASS);
@@ -23,7 +22,6 @@ public class MySQL {
         }
     }
 
-    // Static method to get the singleton instance
     public static MySQL getInstance() {
         if (instance == null) {
             synchronized (MySQL.class) {
@@ -35,7 +33,6 @@ public class MySQL {
         return instance;
     }
 
-    // Method to get the connection
     public Connection getConnection() {
         try {
             if (conn == null || conn.isClosed()) {
@@ -47,7 +44,6 @@ public class MySQL {
         return conn;
     }
 
-    // Method to close the connection
     public void closeConnection() {
         try {
             if (conn != null && !conn.isClosed()) {

@@ -34,6 +34,7 @@ public class ViewCartCommand implements Command {
                 System.out.println("        Brand: " + shoe.getBrand());
                 System.out.println("        Style: " + shoe.getStyle());
                 System.out.println("        Size: " + shoe.getSize());
+                System.out.println("        Price: Nu." + shoe.getPrice());
             }
         }
     }

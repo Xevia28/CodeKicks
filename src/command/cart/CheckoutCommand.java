@@ -9,20 +9,23 @@ import entities.Shoe;
 import entities.User;
 import services.CartService;
 import services.OrderService;
-import state.OrderState;
-import state.ProcessingState;
+import strategy.PaymentProcessor;
 
 public class CheckoutCommand implements Command {
     private Cart cart;
     private String address;
     private OrderService orderService;
     private CartService cartService;
+    private double totalAmount;
+    private PaymentProcessor paymentProcessor;
 
-    public CheckoutCommand(Cart cart, String address, OrderService orderService, CartService cartService) {
+    public CheckoutCommand(Cart cart, String address, OrderService orderService, CartService cartService,
+            PaymentProcessor paymentProcessor) {
         this.cart = cart;
         this.address = address;
         this.orderService = orderService;
         this.cartService = cartService;
+        this.paymentProcessor = paymentProcessor;
     }
 
     @Override
@@ -37,6 +40,14 @@ public class CheckoutCommand implements Command {
             System.out.println("Cart is empty. Cannot proceed to checkout.");
             return;
         }
+
+        totalAmount = calculateTotalAmount(shoes);
+
+        if (!paymentProcessor.executePayment(totalAmount)) {
+            System.out.println("Payment failed. Cannot proceed to checkout.");
+            return;
+        }
+
         int orderId = orderService.createOrder(cart.getUserId(), cart.getId(), address);
         if (orderId != -1) {
             System.out.println("Order created successfully. Order ID: " + orderId);
@@ -48,5 +59,13 @@ public class CheckoutCommand implements Command {
         } else {
             System.out.println("Failed to create order.");
         }
+    }
+
+    private double calculateTotalAmount(List<Shoe> shoes) {
+        double total = 0.0;
+        for (Shoe shoe : shoes) {
+            total += shoe.getPrice();
+        }
+        return total;
     }
 }
