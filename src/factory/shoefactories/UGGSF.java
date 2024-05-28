@@ -1,11 +1,11 @@
 package factory.shoefactories;
 
-import entities.Shoe;
-import factory.ShoeFactory;
+import factory.shoes.UGG;
+import framework.ShoeFactory;
 
 public class UGGSF implements ShoeFactory {
     @Override
-    public Shoe createShoe(String type, String style, String size, double price) {
-        return new Shoe(type, "UGG", style, size, price);
+    public UGG createShoe(String type, String style, String size, double price) {
+        return new UGG(type, style, size, price);
     }
 }

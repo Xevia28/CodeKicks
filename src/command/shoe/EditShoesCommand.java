@@ -1,7 +1,7 @@
 package command.shoe;
 
-import command.Command;
 import entities.Shoe;
+import framework.Command;
 import services.ShoeService;
 
 public class EditShoesCommand implements Command {

@@ -1,6 +1,6 @@
 package command.user;
 
-import command.Command;
+import framework.Command;
 
 public class UserCommandInvoker {
     private Command command;

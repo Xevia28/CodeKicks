@@ -2,9 +2,9 @@ package command.cart;
 
 import java.util.List;
 
-import command.Command;
 import entities.Cart;
 import entities.Shoe;
+import framework.Command;
 import services.CartService;
 
 public class RemoveFromCartCommand implements Command {

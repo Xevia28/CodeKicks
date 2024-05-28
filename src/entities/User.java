@@ -1,6 +1,6 @@
 package entities;
 
-import observer.Observer;
+import framework.Observer;
 
 public class User implements Observer {
     private int id;

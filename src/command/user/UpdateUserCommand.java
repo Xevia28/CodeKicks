@@ -1,7 +1,7 @@
 package command.user;
 
-import command.Command;
 import entities.User;
+import framework.Command;
 
 public class UpdateUserCommand implements Command {
     private User user;

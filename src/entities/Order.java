@@ -3,9 +3,9 @@ package entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import observer.Observer;
+import framework.Observer;
+import framework.OrderState;
 import state.DeliveredState;
-import state.OrderState;
 import state.ProcessingState;
 import state.ShippedState;
 

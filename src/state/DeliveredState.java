@@ -1,6 +1,7 @@
 package state;
 
 import entities.Order;
+import framework.OrderState;
 
 public class DeliveredState implements OrderState {
     @Override

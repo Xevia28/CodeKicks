@@ -1,7 +1,7 @@
 package command.user;
 
-import command.Command;
 import entities.User;
+import framework.Command;
 import services.UserService;
 
 public class LoginCommand implements Command {

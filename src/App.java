@@ -1,7 +1,6 @@
 import java.util.List;
 import java.util.Scanner;
 
-import command.Command;
 import command.cart.AddToCartCommand;
 import command.cart.CheckoutCommand;
 import command.cart.RemoveFromCartCommand;
@@ -17,7 +16,6 @@ import entities.Cart;
 import entities.Order;
 import entities.Shoe;
 import entities.User;
-import factory.ShoeFactory;
 import factory.shoefactories.AESF;
 import factory.shoefactories.AdidasSF;
 import factory.shoefactories.BirkenstockSF;
@@ -27,13 +25,15 @@ import factory.shoefactories.MerrellSF;
 import factory.shoefactories.NikeSF;
 import factory.shoefactories.TimberlandSF;
 import factory.shoefactories.UGGSF;
+import framework.Command;
+import framework.PaymentProcessor;
+import framework.ShoeFactory;
 import services.CartService;
 import services.OrderService;
 import services.ShoeService;
 import services.UserService;
 import strategy.MBobPaymentStrategy;
 import strategy.MPayPaymentStrategy;
-import strategy.PaymentProcessor;
 
 public class App {
     public static void main(String[] args) throws Exception {

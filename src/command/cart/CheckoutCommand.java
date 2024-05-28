@@ -2,14 +2,14 @@ package command.cart;
 
 import java.util.List;
 
-import command.Command;
 import entities.Cart;
 import entities.Order;
 import entities.Shoe;
 import entities.User;
+import framework.Command;
+import framework.PaymentProcessor;
 import services.CartService;
 import services.OrderService;
-import strategy.PaymentProcessor;
 
 public class CheckoutCommand implements Command {
     private Cart cart;

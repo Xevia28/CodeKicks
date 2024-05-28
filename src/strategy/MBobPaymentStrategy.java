@@ -1,5 +1,7 @@
 package strategy;
 
+import framework.PaymentStrategy;
+
 public class MBobPaymentStrategy implements PaymentStrategy {
     private String mpayAccountNumber;
 

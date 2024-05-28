@@ -9,7 +9,7 @@ import java.util.List;
 
 import database.MySQL;
 import entities.Shoe;
-import factory.ShoeFactory;
+import framework.ShoeFactory;
 
 public class ShoeService {
     private MySQL db;

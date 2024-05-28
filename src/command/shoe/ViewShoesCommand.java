@@ -1,9 +1,9 @@
 package command.shoe;
 
 import java.util.List;
-import command.Command;
 
 import entities.Shoe;
+import framework.Command;
 import services.ShoeService;
 
 public class ViewShoesCommand implements Command {

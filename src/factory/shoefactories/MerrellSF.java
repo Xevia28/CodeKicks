@@ -1,11 +1,11 @@
 package factory.shoefactories;
 
-import entities.Shoe;
-import factory.ShoeFactory;
+import factory.shoes.Merrell;
+import framework.ShoeFactory;
 
 public class MerrellSF implements ShoeFactory {
     @Override
-    public Shoe createShoe(String type, String style, String size, double price) {
-        return new Shoe(type, "Merrell", style, size, price);
+    public Merrell createShoe(String type, String style, String size, double price) {
+        return new Merrell(type, style, size, price);
     }
 }

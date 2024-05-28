@@ -1,7 +1,7 @@
 package command.cart;
 
-import command.Command;
 import entities.Cart;
+import framework.Command;
 import services.CartService;
 
 public class AddToCartCommand implements Command {

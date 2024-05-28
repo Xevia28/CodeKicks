@@ -1,11 +1,11 @@
 package factory.shoefactories;
 
-import entities.Shoe;
-import factory.ShoeFactory;
+import factory.shoes.JM;
+import framework.ShoeFactory;
 
 public class JMSF implements ShoeFactory {
     @Override
-    public Shoe createShoe(String type, String style, String size, double price) {
-        return new Shoe(type, "Johnston & Murphy", style, size, price);
+    public JM createShoe(String type, String style, String size, double price) {
+        return new JM(type, style, size, price);
     }
 }

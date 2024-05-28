@@ -1,6 +1,6 @@
 package command.shoe;
 
-import command.Command;
+import framework.Command;
 import services.ShoeService;
 
 public class DeleteShoesCommand implements Command {

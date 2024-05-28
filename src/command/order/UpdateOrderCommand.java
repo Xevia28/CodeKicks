@@ -1,10 +1,10 @@
 package command.order;
 
-import command.Command;
 import entities.Order;
 import entities.User;
+import framework.Command;
+import framework.OrderState;
 import services.OrderService;
-import state.OrderState;
 
 public class UpdateOrderCommand implements Command {
     private OrderService orderService;
