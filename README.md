@@ -50,3 +50,8 @@ Command: Implement commands for various actions users can perform, such as addin
 Singleton: Implement singleton to use only one instance of a database
 
 Observer: Implement observers to notify users about order status updates, promotions, or changes in product availability.
+
+Members contributions:
+Jigme Namgyal - Command and State
+Dendup Tshering - Singleton and Factory 
+Chador Wangdi - Observer and Strategy
